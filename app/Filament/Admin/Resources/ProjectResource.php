@@ -3,6 +3,7 @@
 namespace App\Filament\Admin\Resources;
 
 use Filament\Tables;
+use App\Models\Project;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
@@ -150,14 +151,17 @@ class ProjectResource extends Resource
                     })
                     ->sortable(),
 
-                    \Filament\Tables\Columns\TextColumn::make('tasks_count')
-                    ->label('Completion Percentage')
-                    ->counts('tasks', 'id', function ($query) {
-                        // Filter tasks where status_id = 1
-                        $query->where('status_id', 1);
-                    })
-                    ->badge()
-                    ->color('info'),
+                    \Filament\Tables\Columns\TextColumn::make('completion_percentage')
+    ->label('Completion Percentage')
+    ->state(function (Project $record): float {
+        $totalTasks = $record->tasks->count(); // Count all tasks
+        $completedTasks = $record->tasks()->where('status_id', 1)->count(); // Count completed tasks
+
+        // Calculate and format the percentage, handling division by zero
+        return $totalTasks > 0 ? number_format(($completedTasks / $totalTasks) * 100, 2) : 0;
+    })
+    ->badge()
+    ->color('info'),
 
 
                 \Filament\Tables\Columns\TextColumn::make('start_date')
