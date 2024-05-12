@@ -1,0 +1,92 @@
+<?php
+
+namespace App\Filament\Admin\Resources;
+
+use Filament\Forms;
+use Filament\Tables;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use App\Filament\Admin\Resources\ProjectStatusResource\Pages;
+
+class ProjectStatusResource extends Resource
+{
+    protected static ?string $model = \App\Models\ProjectStatus::class;
+
+    protected static ?string $navigationGroup = 'Project Management';
+    protected static ?string $navigationLabel = 'Statuses';
+    protected static ?string $navigationIcon = 'heroicon-o-check-circle';
+    protected static ?int $navigationSort = 2;
+    protected static bool $shouldRegisterNavigation = false;
+
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                \Filament\Forms\Components\TextInput::make('name')
+                    ->string()
+                    ->maxLength(255)
+                    ->required(),
+            ]);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                \Filament\Tables\Columns\TextColumn::make('name')
+                    ->sortable()->searchable()
+                    ->wrap(),
+                \Filament\Tables\Columns\TextColumn::make('created_at')
+                    ->date()
+                    ->sortable()->searchable(),
+            ])
+            ->filters([
+                //
+            ])
+            ->actions([
+                Tables\Actions\DeleteAction::make()
+                    ->action(function ($data, $record) {
+                        if ($record->projects->isNotEmpty()) {
+                            sendErrorNotification(
+                                'Project Status',
+                                'Projects',
+                                $record->name
+                            );
+                        }
+                    }),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->action(function ($data, $records) {
+                            foreach ($records as $record) {
+                                if ($record->projects->isNotEmpty()) {
+                                    sendErrorNotification(
+                                        'Project Status',
+                                        'Projects',
+                                        $record->name
+                                    );
+                                }
+                            }
+                        }),
+                ]),
+            ]);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListProjectStatuses::route('/'),
+            'create' => Pages\CreateProjectStatus::route('/create'),
+            'edit' => Pages\EditProjectStatus::route('/{record}/edit'),
+        ];
+    }
+}
