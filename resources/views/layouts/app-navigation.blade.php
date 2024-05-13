@@ -19,8 +19,8 @@
             </div>
 
             <div class="relative flex ml-3 space-x-4">
-                @can('view-admin-panel', App\Models\User::class)
-                    <x-nav-link :navigate="false" href="{{ route('filament.admin.pages.dashboard') }}" :active="request()->routeIs('filament.admin.pages.dashboard')">
+                @can('view-projectManager-panel', App\Models\User::class)
+                    <x-nav-link :navigate="false" href="{{ route('filament.projectManager.pages.dashboard') }}" :active="request()->routeIs('filament.admin.pages.dashboard')">
                         {{ __('Admin Panel') }}
                     </x-nav-link>
                 @endcan

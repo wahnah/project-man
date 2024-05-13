@@ -12,13 +12,13 @@
             </div>
 
             <div class="relative flex ml-3 space-x-4">
-                <x-nav-link :navigate="false" href="{{ route('filament.admin.auth.login') }}" :active="request()->routeIs('filament.admin.auth.login')">
+               <!-- <x-nav-link :navigate="false" href="{{ route('filament.admin.auth.login') }}" :active="request()->routeIs('filament.admin.auth.login')">
                     {{ __('Admin Panel') }}
                 </x-nav-link>
 
                 <x-nav-link :navigate="false" href="{{ route('filament.employee.auth.login') }}" :active="request()->routeIs('filament.employee.auth.login')">
                     {{ __('Employee Panel') }}
-                </x-nav-link>
+                </x-nav-link> -->
             </div>
         </div>
     </div>
