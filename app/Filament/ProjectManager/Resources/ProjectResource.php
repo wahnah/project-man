@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Filament\Admin\Resources;
+namespace App\Filament\ProjectManager\Resources;
 
+use App\Filament\ProjectManager\Resources\ProjectResource\Pages;
+use App\Filament\ProjectManager\Resources\ProjectResource\RelationManagers;
 use Filament\Tables;
 use App\Models\Project;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use App\Filament\Admin\Resources\ProjectResource\Pages;
+
 use App\Filament\Admin\Resources\ProjectResource\RelationManagers\TeamsRelationManager;
 use App\Filament\Admin\Resources\ProjectResource\RelationManagers\StatusRelationManager;
 use App\Filament\Admin\Resources\ProjectResource\RelationManagers\CategoryRelationManager;
@@ -238,7 +240,7 @@ class ProjectResource extends Resource
         return [
             'index' => Pages\ListProjects::route('/'),
             'create' => Pages\CreateProject::route('/create'),
-            'view' => Pages\ViewProject::route('/{record}'),
+      //      'view' => Pages\ViewProject::route('/{record}'),
             'edit' => Pages\EditProject::route('/{record}/edit'),
         ];
     }

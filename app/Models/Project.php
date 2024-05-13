@@ -15,7 +15,7 @@ class Project extends Model
     protected $fillable = [
         'name',
         'pm_id', 'category_id', 'status_id',
-        'start_date', 'finish_date'
+        'start_date', 'finish_date', 'description'
     ];
 
     protected $casts = [

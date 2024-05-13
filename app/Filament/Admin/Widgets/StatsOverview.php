@@ -51,10 +51,6 @@ class StatsOverview extends BaseWidget
                 )->count()
             ),
 
-            Stat::make('Employees', User::count()),
-
-            Stat::make('Teams', Team::count())
-
         ];
     }
 }

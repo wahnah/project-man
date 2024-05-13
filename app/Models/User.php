@@ -28,7 +28,9 @@ class User extends Authenticatable implements FilamentUser, HasMedia
         } elseif ($panel->getId() === 'employee') {
             return $this->userRole->isWorker() &&
                 !$this->position->isProjectManager();
-        }
+            } elseif ($panel->getId() === 'projectManager') {
+                return $this->position->isProjectManager();
+            }
         return false;
     }
 

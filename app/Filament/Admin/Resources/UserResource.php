@@ -41,7 +41,6 @@ class UserResource extends Resource
                             ->required(fn (string $context): bool => $context === 'create')
                             ->unique(ignoreRecord: true),
 
-                        myPasswordField(), // helper
                     ]),
                 \Filament\Forms\Components\Fieldset::make('Position and role')
                     ->schema([
@@ -99,9 +98,6 @@ class UserResource extends Resource
                     ->expandableLimitedList()
                     ->searchable(),
 
-                \Filament\Tables\Columns\SpatieMediaLibraryImageColumn::make('avatar')
-                    ->defaultImageUrl('/storage/no-image-available.jpg')
-                    ->circular(),
 
                 \Filament\Tables\Columns\TextColumn::make('created_at')
                     ->label('Register at')
