@@ -145,6 +145,11 @@ class TaskResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+        ->query(
+            \App\Models\Task::whereHas('project', function($query) {
+                $query->where('pm_id', auth()->user()->id);
+            })
+            )
             ->columns([
                 \Filament\Tables\Columns\TextColumn::make('name')
                     ->label('Name and description')

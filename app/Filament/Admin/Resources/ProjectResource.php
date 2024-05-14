@@ -67,10 +67,14 @@ class ProjectResource extends Resource
                             \Filament\Forms\Components\Textarea::make('description')
                             ->rows(10)
                             ->cols(20)
-                            ->required()
                             ->minLength(1)
                             ->maxLength(255)
                             ->columns(2),
+
+
+                            \Filament\Forms\Components\FileUpload::make('files')
+        ->label('Upload files')
+        ->multiple(),
                         
                     ]),
 

@@ -129,6 +129,9 @@ class ProjectResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+        ->query(
+            \App\Models\Project::where('pm_id', auth()->user()->id)
+        )
             ->columns([
                 \Filament\Tables\Columns\TextColumn::make('name')
                     ->sortable()->searchable()
