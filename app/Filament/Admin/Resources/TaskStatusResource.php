@@ -71,7 +71,9 @@ class TaskStatusResource extends Resource
                             }
                         }),
                 ]),
-            ]);
+            ])
+            ->recordAction(null)
+            ->recordUrl(null);
     }
 
     public static function getRelations(): array

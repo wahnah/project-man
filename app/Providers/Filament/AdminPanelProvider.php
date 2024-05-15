@@ -35,6 +35,7 @@ class AdminPanelProvider extends PanelProvider
                 'Projects',
                 'Users',
             ])
+            ->darkMode(false)
             ->breadcrumbs(false)
             ->brandLogo(fn () => view('components.application-logo'))
             ->viteTheme('resources/css/filament/theme.css')

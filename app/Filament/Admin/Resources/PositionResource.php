@@ -60,7 +60,9 @@ class PositionResource extends Resource
                             }
                         }),
                 ]),
-            ]);
+            ])
+            ->recordAction(null)
+            ->recordUrl(null);
     }
 
     public static function getRelations(): array

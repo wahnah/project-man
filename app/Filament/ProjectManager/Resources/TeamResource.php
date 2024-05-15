@@ -84,7 +84,9 @@ class TeamResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->recordAction(null)
+            ->recordUrl(null);
     }
 
     public static function getRelations(): array

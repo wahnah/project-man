@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->integer('project_id');
             $table->string('file_name');
-            $table->string('file_path');
             $table->timestamps();
         });
     }

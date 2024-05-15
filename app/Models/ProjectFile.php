@@ -12,5 +12,21 @@ class ProjectFile extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'project_id',
+        'file_name',
+    ];
+
+    protected $casts = [
+        'file_name' => 'array'
+        
+    ];
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+
+
 
 }

@@ -72,9 +72,7 @@ class ProjectResource extends Resource
                             ->columns(2),
 
 
-                            \Filament\Forms\Components\FileUpload::make('files')
-        ->label('Upload files')
-        ->multiple(),
+                         
                         
                     ]),
 

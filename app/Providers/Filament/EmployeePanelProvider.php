@@ -30,6 +30,7 @@ class EmployeePanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Emerald,
             ])
+            ->darkMode(false)
             ->breadcrumbs(false)
             ->brandLogo(fn () => view('components.application-logo'))
             ->viteTheme('resources/css/filament/theme.css')

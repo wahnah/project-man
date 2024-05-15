@@ -30,6 +30,11 @@ class ProjectManagerPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->darkMode(false)
+            ->breadcrumbs(false)
+            ->brandLogo(fn () => view('components.application-logo'))
+            ->viteTheme('resources/css/filament/theme.css')
+            ->defaultThemeMode(\Filament\Enums\ThemeMode::Light)
             ->discoverResources(in: app_path('Filament/ProjectManager/Resources'), for: 'App\\Filament\\ProjectManager\\Resources')
             ->discoverPages(in: app_path('Filament/ProjectManager/Pages'), for: 'App\\Filament\\ProjectManager\\Pages')
             ->pages([
