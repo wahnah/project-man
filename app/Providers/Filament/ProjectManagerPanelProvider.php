@@ -23,6 +23,8 @@ class ProjectManagerPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+        ->databaseNotifications(true)
+        ->databaseNotificationsPolling('30s')
         ->topNavigation()
             ->id('projectManager')
             ->path('projectManager')
@@ -53,7 +55,7 @@ class ProjectManagerPanelProvider extends PanelProvider
                 VerifyCsrfToken::class,
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
-                DispatchServingFilamentEvent::class,
+                DispatchServingFilamentEvent::class,        
             ])
             ->authMiddleware([
                 Authenticate::class,

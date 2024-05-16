@@ -23,6 +23,7 @@ class EmployeePanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+        ->databaseNotifications(true)
             ->topNavigation()
             ->id('employee')
             ->path('employee')
