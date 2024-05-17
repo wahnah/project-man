@@ -53,7 +53,7 @@ class ProjectCategoryResource extends Resource
                         }
                     }),
             ])
-            ->bulkActions([
+            /*->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make()
                         ->action(function ($data, $records) {
@@ -64,7 +64,7 @@ class ProjectCategoryResource extends Resource
                             }
                         }),
                 ]),
-            ])
+            ])*/
             ->recordAction(null)
             ->recordUrl(null);
     }

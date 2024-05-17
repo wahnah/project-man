@@ -16,6 +16,37 @@ class CreateTask extends CreateRecord
     protected static string $resource = TaskResource::class;
     protected static ?string $model = \App\Models\Team::class;
 
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+{
+
+    // Retrieve the project model instance 
+    $project = Project::find($data['project_id']);
+
+    if (!strtotime($data['start_date']) || strtotime($data['start_date']) < strtotime($project->start_date) || strtotime($data['start_date']) > strtotime($project->finish_date)) {
+        Notification::make()
+            ->title('Failed to create task')
+            ->body('Make sure the dates set for task fail between projuct start and finish dates')
+            ->danger() 
+            ->send();
+        //throw new \Exception('Task start date is outside the project dates');
+        $this->halt();
+    }
+    
+    if (!strtotime($data['finish_date']) || strtotime($data['finish_date']) < strtotime($project->start_date) || strtotime($data['finish_date']) > strtotime($project->finish_date)) {
+        Notification::make()
+            ->title('Failed to create task')
+            ->body('Make sure the dates set for task fail between projuct start and finish dates')
+            ->danger() 
+            ->send();
+        //throw new \Exception('Task finish date is outside the project dates');
+        $this->halt();
+    }
+
+    
+    return $data;
+}
+
     protected function handleRecordCreation(array $data): Model
     {
         $record =  static::getModel()::create($data);
@@ -45,4 +76,9 @@ class CreateTask extends CreateRecord
 
         return $record;
     }
+
+    protected function getRedirectUrl(): string
+{
+    return $this->getResource()::getUrl('index');
+}
 }

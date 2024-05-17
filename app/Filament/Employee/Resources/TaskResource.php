@@ -32,7 +32,8 @@ class TaskResource extends Resource
                             ->cols(20)
                             ->required()
                             ->minLength(1)
-                            ->maxLength(255),
+                            ->maxLength(255)
+                            ->disabled(),
                     ])->columns(1),
 
                 Forms\Components\Fieldset::make('Details')
@@ -90,6 +91,7 @@ class TaskResource extends Resource
                                     );
                                 },
                             ])
+                            ->disabled()
                             ->required(),
 
                         \Filament\Forms\Components\DatePicker::make('finish_date')
@@ -117,7 +119,8 @@ class TaskResource extends Resource
                             ->validationMessages([
                                 'required_if' => 'The :attribute field is required when task status is ' .
                                     \App\Models\TaskStatus::FINISHED . '.',
-                            ]),
+                            ])
+                            ->disabled(),
                     ]),
             ]);
     }

@@ -96,10 +96,7 @@ class MembersRelationManager extends RelationManager
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DetachAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DetachBulkAction::make(),
-                ]),
-            ]);
+            ->recordAction(null)
+            ->recordUrl(null);;
     }
 }

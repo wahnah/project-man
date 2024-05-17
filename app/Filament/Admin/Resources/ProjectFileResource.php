@@ -35,10 +35,9 @@ class ProjectFileResource extends Resource
                             ->label('Upload Files')
                             ->multiple()
                             ->required()
-                            ->columnSpan(2)
-                            ->directory('file_path')
                             ->enableDownload()
                             ->enableOpen()
+                            ->preserveFilenames()
                             ->storeFilenamesIn('file_name')
                             
             ]);

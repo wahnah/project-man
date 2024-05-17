@@ -218,11 +218,8 @@ class ProjectResource extends Resource
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->recordAction(null)
+            ->recordUrl(null);
     }
 
     public static function getRelations(): array
