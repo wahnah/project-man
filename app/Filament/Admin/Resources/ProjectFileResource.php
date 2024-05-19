@@ -18,6 +18,12 @@ class ProjectFileResource extends Resource
 {
     protected static ?string $model = ProjectFile::class;
 
+    protected static ?string $navigationGroup = 'Projects';
+    protected static ?string $navigationLabel = 'Project Files';
+    protected static ?string $navigationIcon = 'heroicon-o-document';
+    protected static ?int $navigationSort = 2;
+
+
     //protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -39,7 +45,7 @@ class ProjectFileResource extends Resource
                             ->enableOpen()
                             ->preserveFilenames()
                             ->storeFilenamesIn('file_name')
-                            
+
             ]);
     }
 
@@ -47,14 +53,14 @@ class ProjectFileResource extends Resource
     {
         return $table
             ->columns([
-                
+
                     \Filament\Tables\Columns\TextColumn::make('project.name')
                         ->sortable()->searchable()
                         ->wrap(),
                     \Filament\Tables\Columns\TextColumn::make('created_at')
                         ->date()
                         ->sortable()->searchable(),
-                
+
             ])
             ->filters([
                 //

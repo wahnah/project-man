@@ -19,9 +19,7 @@ class ProjectResource extends Resource
 {
     protected static ?string $model = \App\Models\Project::class;
 
-    protected static ?string $navigationGroup = 'Projects';
-    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
-    protected static ?int $navigationSort = 1;
+
 
     public static function form(Form $form): Form
     {
@@ -73,7 +71,7 @@ class ProjectResource extends Resource
                             ->minLength(1)
                             ->maxLength(255)
                             ->columns(2),
-                        
+
                     ]),
 
                 \Filament\Forms\Components\Fieldset::make('Dates')

@@ -11,41 +11,29 @@ class StatsOverview extends BaseWidget
     {
         $projects = auth()->user()->projects->unique();
         $tasks = auth()->user()->tasks;
+        $user = auth()->user();
 
         return [
-            Stat::make('My Projects', $projects->count()),
+            Stat::make('My Projects', \App\Models\Project::where('pm_id', $user->id)->count()),
             Stat::make(
                 'Finished Projects',
 
-                $projects->filter(function ($project) {
-                    return $project->status->name ==
-                        \App\Models\ProjectStatus::FINISHED;
-                })->count()
+                $finishedProjects = \App\Models\Project::where('pm_id', $user->id)
+            ->whereHas('status', function ($query) {
+                $query->where('name', \App\Models\ProjectStatus::FINISHED);
+            })
+            ->count()
             ),
             Stat::make(
                 'Projects In-Progress',
-                $projects->filter(function ($project) {
-                    return $project->status->name ==
-                        \App\Models\ProjectStatus::IN_PROGRESS;
-                })->count()
+
+                $inprogressProjects = \App\Models\Project::where('pm_id', $user->id)
+                ->whereHas('status', function ($query) {
+                    $query->where('name', \App\Models\ProjectStatus::IN_PROGRESS);
+                })
+                ->count()
             ),
 
-            Stat::make('My Tasks', $tasks->count()),
-            Stat::make(
-                'Finished Tasks',
-
-                $tasks->filter(function ($task) {
-                    return $task->status->name ==
-                        \App\Models\TaskStatus::FINISHED;
-                })->count()
-            ),
-            Stat::make(
-                'Tasks In-Progress',
-                $tasks->filter(function ($task) {
-                    return $task->status->name ==
-                        \App\Models\TaskStatus::IN_PROGRESS;
-                })->count()
-            ),
         ];
     }
 }

@@ -36,6 +36,7 @@ class AdminPanelProvider extends PanelProvider
             ->navigationGroups([
                 'Projects',
                 'Users',
+
             ])
             ->darkMode(false)
             ->breadcrumbs(false)

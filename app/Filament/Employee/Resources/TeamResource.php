@@ -77,7 +77,9 @@ class TeamResource extends Resource
             ])
             ->bulkActions([
                 //
-            ]);
+            ])
+            ->recordAction(null)
+            ->recordUrl(null);;
     }
 
     public static function getRelations(): array

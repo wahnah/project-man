@@ -179,7 +179,7 @@ class TaskResource extends Resource
                     ->date()
                     ->sortable()->searchable(),
             ])
-            ->filters([
+           /* ->filters([
                 Tables\Filters\SelectFilter::make('project_id')
                     ->label('Project')
                     ->relationship('project', 'name'),
@@ -190,14 +190,16 @@ class TaskResource extends Resource
                 Tables\Filters\SelectFilter::make('status_id')
                     ->label('Status')
                     ->relationship('status', 'name')
-            ])
+            ])*/
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 //
-            ]);
+            ])
+            ->recordAction(null)
+            ->recordUrl(null);;
     }
 
     public static function getRelations(): array
